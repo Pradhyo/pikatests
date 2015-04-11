@@ -31,9 +31,11 @@ class Answer(db.Model):
 class User(db.Model):
 	"""Defines properties of User model """
 	user_id = db.StringProperty(required = True)
-	nickname = db.StringProperty(required = True)
+	username = db.StringProperty(required = True)
 	email = db.EmailProperty(required = True)
+	department = db.StringProperty(required = True)
 	rating = db.IntegerProperty()
+
 
 
 
