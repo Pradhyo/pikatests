@@ -7,3 +7,11 @@ class Question(db.Model):
 	course = db.StringProperty(required = True)
 	created = db.DateTimeProperty(auto_now_add = True)	
 	user = db.UserProperty(auto_current_user_add = True)
+
+class Answer(db.Model):
+	"""Defines properties of an answer """
+	answer = db.TextProperty(required = True)
+	created = db.DateTimeProperty(auto_now_add = True)	
+	user = db.UserProperty(auto_current_user_add = True)
+
+
