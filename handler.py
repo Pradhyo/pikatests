@@ -48,10 +48,10 @@ class QuestionsHandler(Handler):
 
 		if user:
 			questions = Question.all().order('-created')
-			school = self.request.get('school')
+			#school = self.request.get('school')
 			course = self.request.get('course')
-			if school:
-				questions.filter("school =", school)
+			'''if school:
+				questions.filter("school =", school)'''
 			if course:	
 				questions.filter("course =", course)
 			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url)
@@ -69,10 +69,10 @@ class AddQuestion(Handler):
 
 	def post(self):
 		question = self.request.get('question')
-		school = self.request.get('school')
+		#school = self.request.get('school')
 		course = self.request.get('course')
-		if question and school and course:
-			question = Question(parent = question_key(question_parent = course), question = question, school = school, course = course)
+		if question and course:
+			question = Question(parent = question_key(question_parent = course), question = question, course = course)
 			question.put()
 			self.redirect('/')			
 
