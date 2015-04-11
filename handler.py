@@ -37,7 +37,14 @@ class MainHandler(Handler):
 		user = users.get_current_user()
 
 		if user:
-			self.render("HomePage.html", name = user.nickname())
+			questions = Question.all().order('-created')
+			school = self.request.get('school')
+			course = self.request.get('course')
+			if school:
+				questions.filter("school =", school)
+			if course:	
+				questions.filter("course =", course)
+			self.render("QuestionsHome.html", name = user.nickname(), questions = questions)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
