@@ -2,17 +2,22 @@
 
 {% block content %}
 	
-	Search Questions here:
+	
 	<form>
 	Course: <input type="text" name="course"><br>
 	<input type="submit">
-	</form> <br><br>
-
+	</form> <br>
+	Enter a course to display relevant results <br>
 	<section>
-	{% for q in questions %}
-		{{ q.render_question() | safe }}
-		<br><br>
-	{% endfor %}
+	
+	{% if searched %}
+		{% for q in questions %}
+			{{ q.render_question() | safe }}
+			<br><br>
+		{% endfor %}
+
+	{% endif %}
+
 	</section>
 
 	<a href="/add_question"> Add a question here </a>

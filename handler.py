@@ -45,7 +45,7 @@ class QuestionsHandler(Handler):
 	def get(self):
 		# Checks for active Google account session
 		user = users.get_current_user()
-
+		searched = False
 		if user:
 			questions = Question.all().order('-created')
 			#school = self.request.get('school')
@@ -54,7 +54,8 @@ class QuestionsHandler(Handler):
 				questions.filter("school =", school)'''
 			if course:	
 				questions.filter("course =", course)
-			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url)
+				searched = True
+			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
