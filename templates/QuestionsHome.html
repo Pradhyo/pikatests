@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section>
+  {% for q in questions %}
+    {{ q.render_question() | safe }}
+    <br><br>
+  {% endfor %}
+  </section>
+{% endblock %}
