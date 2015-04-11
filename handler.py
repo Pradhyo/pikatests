@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 from google.appengine.api import users
+from data_models import Question, Answer
 
 template_dir = os.path.join(os.path.dirname(__file__),'templates')
 jinja_env = jinja2.Environment (loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
@@ -31,5 +32,17 @@ class MainHandler(Handler):
 			self.render("HomePage.html", name = user.nickname())
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
+
+class AddQuestion(Handler):
+	def get(self):
+		# Checks for active Google account session
+		user = users.get_current_user()
+
+		if user:
+			self.render("add_question.html", name = user.nickname())
+		else:
+			self.redirect(users.create_login_url(self.request.uri))
+
+
 
 
