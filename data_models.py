@@ -28,4 +28,12 @@ class Answer(db.Model):
 	created = db.DateTimeProperty(auto_now_add = True)	
 	user = db.UserProperty(auto_current_user_add = True)
 
+class User(db.Model):
+	"""Defines properties of User model """
+	user_id = db.StringProperty(required = True)
+	nickname = db.StringProperty(required = True)
+	email = db.EmailProperty(required = True)
+	rating = db.IntegerProperty()
+
+
 
