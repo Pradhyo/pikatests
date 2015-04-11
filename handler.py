@@ -33,6 +33,15 @@ def question_key(question_parent='default'):
 
 class MainHandler(Handler):
 	def get(self):
+		user = users.get_current_user()
+		if user:
+			self.redirect('/questions')
+		else:
+			self.render("HomePage.html")	
+
+
+class QuestionsHandler(Handler):
+	def get(self):
 		# Checks for active Google account session
 		user = users.get_current_user()
 
