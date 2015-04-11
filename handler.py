@@ -39,6 +39,7 @@ class MainHandler(Handler):
 		else:
 			self.render("HomePage.html")	
 
+logout_url = users.create_logout_url("/")
 
 class QuestionsHandler(Handler):
 	def get(self):
@@ -53,7 +54,7 @@ class QuestionsHandler(Handler):
 				questions.filter("school =", school)
 			if course:	
 				questions.filter("course =", course)
-			self.render("QuestionsHome.html", name = user.nickname(), questions = questions)
+			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
@@ -61,9 +62,8 @@ class AddQuestion(Handler):
 	def get(self):
 		# Checks for active Google account session
 		user = users.get_current_user()
-
 		if user:
-			self.render("add_question.html", name = user.nickname())
+			self.render("add_question.html", name = user.nickname(), logout_url = logout_url)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
