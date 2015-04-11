@@ -76,6 +76,14 @@ class AddQuestion(Handler):
 			question.put()
 			self.redirect('/')			
 
+class UserPage(Handler):
+	def get(self):
+		user = users.get_current_user()
+		u = User.all().filter('user_id =', user.user_id).get()
+		if u:
+			self.render("user_page.html", name = u.username)
+		else:
+			self.redirect("/edit_user_info")
 
 
 
