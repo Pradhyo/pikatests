@@ -1,6 +1,7 @@
 import webapp2
 import jinja2
 import os
+from google.appengine.ext import db
 from google.appengine.api import users
 from data_models import Question, Answer
 
@@ -23,6 +24,13 @@ def render_str(template, **params):
 	t = jinja_env.get_template(template)
 	return t.render(params)
 
+def question_key(question_parent='default'):
+    """Constructs a Datastore key for a Question entity.
+
+    We use question_parent as the key.
+    """
+    return db.Key.from_path('Question', question_parent)	
+
 class MainHandler(Handler):
 	def get(self):
 		# Checks for active Google account session
@@ -42,6 +50,15 @@ class AddQuestion(Handler):
 			self.render("add_question.html", name = user.nickname())
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
+
+	def post(self):
+		question = self.request.get('question')
+		school = self.request.get('school')
+		course = self.request.get('course')
+		if question and school and course:
+			question = Question(parent = question_key(question_parent = course), question = question, school = school, course = course)
+			question.put()
+			self.redirect('/')			
 
 
 
