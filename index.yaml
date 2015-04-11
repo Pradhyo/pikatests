@@ -10,3 +10,14 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: Question
+  properties:
+  - name: course
+  - name: created
+    direction: desc
+
+- kind: Question
+  properties:
+  - name: school
+  - name: created
+    direction: desc
