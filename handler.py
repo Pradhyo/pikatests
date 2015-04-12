@@ -61,15 +61,20 @@ class QuestionsHandler(Handler):
 		searched = False
 		if user:
 			q = Question.all(keys_only = True).order('-created')
+			error2 = None
 			#school = self.request.get('school')
 			course = self.request.get('course')
-			courses = db.GqlQuery("SELECT DISTINCT course FROM Question WHERE course != ''")
 			if course:	
 				q.filter("course =", course)
 				searched = True
-			question_keys = q.fetch(200)
-			questions = db.get(question_keys)
-			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched, courses = courses)
+			question_keys = q.fetch(100)
+			if question_keys:
+				questions = db.get(question_keys)
+				self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched)
+			else:
+				error2 = "No questions for this course yet!"				
+				self.render("QuestionsHome.html", name = user.nickname(), logout_url = logout_url, error2 = error2)
+			
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
