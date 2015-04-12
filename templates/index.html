@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pikatests</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="script.js"></script>
+</head>
+
+<body class="frontpage ">
+    <script src="/assets/index.min.js"></script>
+    <script>
+    var originalUrl = '/';
+    var page = 'frontpage';
+    var allTags = ['actionscript', 'admin', 'ads', 'adult', 'after effects', 'android', 'angularjs', 'apache', 'api', 'architecture', 'art direction', 'asp', 'assembly', 'aws', 'backend', 'biotech', 'bootstrap', 'bus dev', 'c', 'c plus plus', 'c sharp', 'cassandra', 'clojure', 'cloud', 'coldfusion', 'consulting', 'contracting', 'copywriting', 'couchbase', 'couchdb', 'css', 'data science', 'data viz', 'dba', 'design', 'dev', 'devops', 'docker', 'dot net', 'drupal', 'ecommerce', 'education', 'elasticsearch', 'ember js', 'engineer', 'erlang', 'excel', 'exec', 'finance', 'firebase', 'full stack', 'full time', 'game dev', 'golang', 'groovy', 'hardware', 'haskell', 'heroku', 'html', 'illustrator', 'infosec', 'internship', 'io js', 'ios', 'java', 'javascript', 'jquery', 'junior', 'lamp', 'laravel', 'legal', 'linode', 'linux', 'lisp', 'machine learning', 'marketing', 'math', 'matlab', 'medical', 'meteor js', 'mobile', 'mongodb', 'nginx', 'node js', 'obj c', 'open stack', 'ops', 'part time', 'perl', 'phonegap', 'photoshop', 'php', 'postgres', 'product manager', 'python', 'qa', 'quality assurance', 'rails', 'reactjs', 'recruiter', 'recruitment', 'robotics', 'ruby', 'sales', 'scala', 'scheme', 'scrum', 'senior', 'seo', 'social media', 'sql', 'stats', 'support', 'swift', 'symfony', 'sys admin', 'telecom', 'testing', 'transcribing', 'user experience', 'user interface', 'vfx', 'video', 'web dev', 'webmaster', 'win phone', 'wordpress', ];
+    var sampleJobs = ['Africana Studies', 'Arab and Islamic Studies', 'Arabic Studies', 'Art History', 'Astronomy and Astrophysics', 'Biochemistry', 'Bioengineering', 'Biology', 'Business', 'Chemistry', 'Chinese Studies', 'Classical Studies', 'Cognitive Science', 'Communication', 'Comprehensive Science Program', 'Computing Science', 'Criminal Justice', 'Economics', 'Education, Secondary', 'English', 'Environmental Science', 'Environmental Studies', 'Ethics Program', 'French and Francophone Studies', 'Gender and Womens Studies', 'Geography', 'History', 'Honors Program', 'Human Services', 'Humanities', 'Global Interdisciplinary Studies', 'Information Science', 'Italian Studies', 'Japanese Studies', 'Latin American Studies', 'Mathematical Sciences', 'Mathematical Sciences/App. Stats', 'Military Science', 'Naval Science', 'Peace and Justice', 'Philosophy', 'Physics', 'Political Science', 'Psychology', 'Russian Studies', 'Sociology', 'Spanish Studies', 'Theatre', 'Theology and Religious Studies', 'Writing and Rhetoric', 'Accountancy', 'Business Law and Corp.Governance', 'Economics', 'Entrepreneurship', 'Finance', 'Management', 'Management Info. Systems', 'Marketing', 'International Business', 'Business Honors', 'Real Estate', 'Chemical', 'Civil', 'Computing', 'Electrical', 'Mechanical', 'Transportation', 'Water Resources and Environmental', 'Nursing'];
+    var sampleJobs = shuffle(sampleJobs);
+    </script>
+    <div class="filter-pane opened" id="filter-pane">
+        <!-- <select class="filter filter-source" id="filter-source">
+            <option value="" selected>Source</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="Behance">Behance</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="Angel List">Angel List</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="We Work Remotely">We Work Remotely</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="Authentic Jobs">Authentic Jobs</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="GitHub">GitHub</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="Stack Overflow">Stack Overflow</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="WFH">WFH</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="We Work Meteor">We Work Meteor</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="Dribbble">Dribbble</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="GoLang Projects">GoLang Projects</option>
+            <option data-filter-target="source" data-filter-type="less-than" data-filter-value="JOBBOX">JOBBOX</option>
+            <option value="remove-filter">✖ remove</option>
+        </select> -->
+        <select class="reverse filter add-filter" id="add-filter">
+            <option>✚ add filter</option>
+        </select>
+    </div><i class="fa fa-navicon action-expand-filter"></i>
+    <div class="top">
+        <div class="fa fa-chevron-down"></div>
+        <!-- <div class="remote-ok-logo">
+            <h1><a class="no-border" href="/"><span class="pacifico">Remote</span></a><a class="no-border" href="/remote-jobs"><span class="ok ">OK</span></a></h1></div> -->
+        <div class="video">
+        </div>
+        <div class="cover"></div>
+        <div class="box">
+            <h1><em>pikatests</em><br/><a>choose your</a> <em></em>quests</h1>
+            <input class="search" type="text" placeholder="what job do you want?"/>
+        </div>
+        <div class="bottom-notice">
+        </div>
+    </div>
+    <div class="notice">
+        <div class="remote-ok-logo">
+            <h1><a class="no-border" href="/"><span class="pacifico">Remote</span></a><a class="no-border" href="/remote-jobs"><span class="ok ">OK</span></a></h1>
+        </div>
+        <h2 class="p"><strong>Remote OK</strong> is a daily listing of jobs where it's okay to work remotely. At <a href="/startups">distributed startups</a> like <a href="http://buffer.com">Buffer</a>, <a href="/startups/zapier">Zapier</a> and <a href="/startups/automattic">Automattic</a> who <a target="_blank" href="https://levels.io/remote-working-is-the-future/">embrace the future</a>. There are 8,350+ opportunities to work anywhere and live everywhere.</h2>
+    </div>
+    <div class="page">
+        <div class="nav">
+            <div class="box">
+                <a href="/remote-jobs" class="active">
+                    <p><i class="fa fa-refresh"></i>Questions</p>
+                </a>
+                <a href="/remote-contracting-jobs" class="">
+                    <p><i class="fa fa-clock-o"></i>Feed</p>
+                </a>
+                <!-- <a href="/remote-full-time-jobs" class="">
+                    <p><i class="fa fa-clock-o"></i>Full time</p>
+                </a>
+                <a href="/remote-part-time-jobs" class="">
+                    <p><i class="fa fa-clock-o"></i>Part time</p>
+                </a>
+                <a href="/remote-internships" class="">
+                    <p><i class="fa fa-graduation-cap"></i>Internships</p>
+                </a>
+                <a href="/tags" class="">
+                    <p><i class="fa fa-tags"></i>Categories</p>
+                </a> -->
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="switcher-container">
+            <div class="switcher">
+                <div class="action-switch-jobs active">
+                    <p><i class="fa fa-briefcase"></i>&nbsp; Jobs</p>
+                </div>
+                <div class="action-switch-people">
+                    <p><i class="fa fa-user"></i>&nbsp; People</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <table id="jobsboard">
+                <tr class="job">
+                    <td class="score tooltip" title="Upvotes">
+                        <div class="round ">4
+                            <div class="pts">pts</div>
+                        </div>
+                    </td>
+                    <td class="image">
+                        <a class="preventLink" target="_blank" href="/jobs/8933-remote-meteor-developer-fizzy-software">
+                            <div class="logo">
+                                <p>FS</p>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="company position company_and_position">
+                        <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </h3></td>
+                    <td class="company position company_and_position_mobile">
+                        <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </h3></td>
+                    <a class="no-border tooltip" title="Show only remote meteor js jobs" href="/remote-meteor-js-jobs">
+                        <div class="tag">
+                    </a>
+                </tr>
+                <!-- <tr class="expand expand-8933 "><td colspan="999" class="heading"><div class="expandContents"><div class="description"><div class="p"><strong class="label">Startup</strong><a href="/startups/fizzy-software">Fizzy Software</a></div><div class="p"><strong class="label">Categories</strong><a title="Remote Meteor JS Jobs" href="/remote-meteor-js-jobs">Meteor JS</a>, <a title="Remote Infosec Jobs" href="/remote-infosec-jobs">Infosec</a>, <a title="Remote Api Jobs" href="/remote-api-jobs">Api</a>, <a title="Remote Backend Jobs" href="/remote-backend-jobs">Backend</a>, <a title="Remote Part Time Jobs" href="/remote-part-time-jobs">Part Time</a>, <a title="Remote Consulting Jobs" href="/remote-consulting-jobs">Consulting</a>, <a title="Remote Software Developer Jobs" href="/remote-dev-jobs">Software Developer</a></div><div><p><div class="share "><blockquote class="twitter-tweet" lang="en"><a href="https://twitter.com/remoteok_jobs/status/586529574604910593"></a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><div class="share-this"><a class="no-border" href="https://twitter.com/intent/retweet?tweet_id=586529574604910593"><div class="button twitter"><i class="fa fa-twitter"></i> Tweet this job</div></a><a class="no-border" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fremoteok.io%2F%2Fjobs%2F8933-remote-meteor-developer-fizzy-software"><div class="button facebook"><i class="fa fa-facebook"></i> Share this job</div></a></div></div></div></div><div class="instructions"><a target="_blank" class="no-border" href="/l/8933"><div class="button action-apply">Apply on <i class="source-weworkmeteor"></i> We Work Meteor</div></a></div></div></td></tr> -->
+                <tr class="job">
+                    <td class="score tooltip" title="Upvotes">
+                        <div class="round ">4
+                            <div class="pts">pts</div>
+                        </div>
+                    </td>
+                    <td class="image">
+                        <a class="preventLink" target="_blank" href="/jobs/8933-remote-meteor-developer-fizzy-software">
+                            <div class="logo">
+                                <p>FS</p>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="company position company_and_position">
+                        <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </h3></td>
+                    <td class="company position company_and_position_mobile">
+                        <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </h3></td>
+                    <a class="no-border tooltip" title="Show only remote meteor js jobs" href="/remote-meteor-js-jobs">
+                        <div class="tag">
+                    </a>
+                </tr>
+                <!-- <tr class="expand expand-8933 "><td colspan="999" class="heading"><div class="expandContents"><div class="description"><div class="p"><strong class="label">Startup</strong><a href="/startups/fizzy-software">Fizzy Software</a></div><div class="p"><strong class="label">Categories</strong><a title="Remote Meteor JS Jobs" href="/remote-meteor-js-jobs">Meteor JS</a>, <a title="Remote Infosec Jobs" href="/remote-infosec-jobs">Infosec</a>, <a title="Remote Api Jobs" href="/remote-api-jobs">Api</a>, <a title="Remote Backend Jobs" href="/remote-backend-jobs">Backend</a>, <a title="Remote Part Time Jobs" href="/remote-part-time-jobs">Part Time</a>, <a title="Remote Consulting Jobs" href="/remote-consulting-jobs">Consulting</a>, <a title="Remote Software Developer Jobs" href="/remote-dev-jobs">Software Developer</a></div><div><p><div class="share "><blockquote class="twitter-tweet" lang="en"><a href="https://twitter.com/remoteok_jobs/status/586529574604910593"></a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><div class="share-this"><a class="no-border" href="https://twitter.com/intent/retweet?tweet_id=586529574604910593"><div class="button twitter"><i class="fa fa-twitter"></i> Tweet this job</div></a><a class="no-border" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fremoteok.io%2F%2Fjobs%2F8933-remote-meteor-developer-fizzy-software"><div class="button facebook"><i class="fa fa-facebook"></i> Share this job</div></a></div></div></div></div><div class="instructions"><a target="_blank" class="no-border" href="/l/8933"><div class="button action-apply">Apply on <i class="source-weworkmeteor"></i> We Work Meteor</div></a></div></div></td></tr> -->
+                <div class="rss">
+                    <div class="button action-add-job reverse"><i class="fa fa-plus-circle"></i>Login</div>
+                </div>
+            </div>
+                <script>
+                window.twttr = (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0],
+                        t = window.twttr || {};
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                    t._e = [];
+                    t.ready = function(f) {
+                        t._e.push(f);
+                    };
+                    return t;
+                }(document, "script", "twitter-wjs"));
+                </script>
+</body>
+
+</html>
