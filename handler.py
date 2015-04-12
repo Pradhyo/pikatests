@@ -38,7 +38,18 @@ class MainHandler(Handler):
 		if user:
 			self.redirect('/questions')
 		else:
-			self.render("HomePage.html")	
+			course = self.request.get('course')
+			searched = False
+			q = Question.all(keys_only = True).order('-created')
+			q.filter("course =", course)
+			question_keys = q.fetch(3)
+			questions = db.get(question_keys)					
+
+			if course and questions:
+				searched = True
+				self.render("HomePage.html", questions = questions, searched = True)
+			else:	
+				self.render("HomePage.html")	
 
 logout_url = users.create_logout_url("/")
 
@@ -63,6 +74,7 @@ class QuestionsHandler(Handler):
 			questions = db.get(question_keys)
 			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched)
 		else:
+
 			self.redirect(users.create_login_url(self.request.uri))
 
 class AddQuestion(Handler):
