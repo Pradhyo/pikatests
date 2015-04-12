@@ -90,10 +90,16 @@
     {% if searched %}
     <section class="bg-primary" id="questions">
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-12 text-center">
+                    {% if questions %}
                     <h2 class="section-heading">Questions</h2>
                     <hr class="light">
+                    {% endif %}
+
+                    
+                    
                     <div class="bs-example">
                         <div class="panel-group" id="accordion">
                             
@@ -116,7 +122,7 @@
 
                         </div>
                     </div>
-            <h3 class="section-heading"><a href="/questions">Login for more questions!</a></h3>
+            <h3 class="section-heading"><a href="/questions">Login for full access!</a></h3>
 
                 </div>
             </div>
