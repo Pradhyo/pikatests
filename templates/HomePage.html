@@ -81,10 +81,14 @@
                     </div>
                 </div>
             </div>
+        {% if searched %}
+            <a href="#questions"><i class="fa fa-chevron-down fa-lg"></i> </a>
+        {% endif %}                    
+
         </div>
     </header>
     {% if searched %}
-    <section class="bg-primary" id="about">
+    <section class="bg-primary" id="questions">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
