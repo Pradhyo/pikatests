@@ -4,8 +4,12 @@
 	
 	
 	<form>
-	Course: <input type="text" name="course"><br>
-	Mock:  <input type="text" name="mock"><br>
+	Course: <select name = "course">
+			{% for each in courses %}
+				<option value="{{each.course}}"> {{each.course}} </option>
+			{% endfor %}
+		</select>
+
 	<input type="submit">
 	</form> <br>
 	Enter a course to display relevant results <br>
