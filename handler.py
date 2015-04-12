@@ -78,6 +78,7 @@ class MockHandler(Handler):
 		user = users.get_current_user()
 		searched = False
 		if user:
+			mocktest = False
 			q = Question.all(keys_only = True).order('-created')
 			courses = db.GqlQuery("SELECT DISTINCT course FROM Question WHERE course != ''")
 			#school = self.request.get('school')
@@ -90,9 +91,10 @@ class MockHandler(Handler):
 				searched = True
 			question_keys = q.fetch(200)
 			if course and mock:
+				mocktest = True
 				question_keys = random.sample(question_keys, int(mock))
 			questions = db.get(question_keys)
-			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched, courses = courses)
+			self.render("mock.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched, courses = courses, mocktest = mocktest)
 		else:
 
 			self.redirect(users.create_login_url(self.request.uri))
