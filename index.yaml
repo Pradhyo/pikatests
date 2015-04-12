@@ -13,8 +13,18 @@ indexes:
 - kind: Question
   properties:
   - name: course
+  - name: DESC
+
+- kind: Question
+  properties:
+  - name: course
   - name: created
     direction: desc
+
+- kind: Question
+  properties:
+  - name: course
+  - name: question
 
 - kind: Question
   properties:
