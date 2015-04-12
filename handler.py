@@ -82,7 +82,8 @@ class AddQuestion(Handler):
 		# Checks for active Google account session
 		user = users.get_current_user()
 		if user:
-			self.render("add_question.html", name = user.nickname(), logout_url = logout_url)
+			courses = db.GqlQuery("SELECT DISTINCT course_id FROM Course WHERE course_id != ''")
+			self.render("add_question.html", name = user.nickname(), logout_url = logout_url, courses = courses)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
