@@ -46,7 +46,7 @@ class MainHandler(Handler):
 			question_keys = q.fetch(3)
 			questions = db.get(question_keys)					
 
-			if course and questions:
+			if course:
 				searched = True
 				self.render("HomePage.html", questions = questions, searched = True)
 			else:	
