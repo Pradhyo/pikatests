@@ -61,6 +61,24 @@ class QuestionsHandler(Handler):
 		if user:
 			q = Question.all(keys_only = True).order('-created')
 			#school = self.request.get('school')
+			course = self.request.get('course')
+			if course:	
+				q.filter("course =", course)
+				searched = True
+			question_keys = q.fetch(200)
+			questions = db.get(question_keys)
+			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched)
+		else:
+			self.redirect(users.create_login_url(self.request.uri))
+
+class MockHandler(Handler):
+	def get(self):
+		# Checks for active Google account session
+		user = users.get_current_user()
+		searched = False
+		if user:
+			q = Question.all(keys_only = True).order('-created')
+			#school = self.request.get('school')
 			mock = self.request.get('mock')
 			course = self.request.get('course')
 			'''if school:
@@ -76,6 +94,7 @@ class QuestionsHandler(Handler):
 		else:
 
 			self.redirect(users.create_login_url(self.request.uri))
+
 
 class AddQuestion(Handler):
 	def get(self):
