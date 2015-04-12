@@ -1,6 +1,7 @@
 import webapp2
 import jinja2
 import os
+import random
 from google.appengine.ext import db
 from google.appengine.api import users
 from data_models import Question, Answer
@@ -47,14 +48,19 @@ class QuestionsHandler(Handler):
 		user = users.get_current_user()
 		searched = False
 		if user:
-			questions = Question.all().order('-created')
+			q = Question.all(keys_only = True).order('-created')
 			#school = self.request.get('school')
+			mock = self.request.get('mock')
 			course = self.request.get('course')
 			'''if school:
 				questions.filter("school =", school)'''
 			if course:	
-				questions.filter("course =", course)
+				q.filter("course =", course)
 				searched = True
+			question_keys = q.fetch(200)
+			if course and mock:
+				question_keys = random.sample(question_keys, int(mock))
+			questions = db.get(question_keys)
 			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
