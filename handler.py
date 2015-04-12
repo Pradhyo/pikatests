@@ -62,12 +62,13 @@ class QuestionsHandler(Handler):
 			q = Question.all(keys_only = True).order('-created')
 			#school = self.request.get('school')
 			course = self.request.get('course')
+			courses = db.GqlQuery("SELECT DISTINCT course FROM Question WHERE course != ''")
 			if course:	
 				q.filter("course =", course)
 				searched = True
 			question_keys = q.fetch(200)
 			questions = db.get(question_keys)
-			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched)
+			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched, courses = courses)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
@@ -78,6 +79,7 @@ class MockHandler(Handler):
 		searched = False
 		if user:
 			q = Question.all(keys_only = True).order('-created')
+			courses = db.GqlQuery("SELECT DISTINCT course FROM Question WHERE course != ''")
 			#school = self.request.get('school')
 			mock = self.request.get('mock')
 			course = self.request.get('course')
@@ -90,7 +92,7 @@ class MockHandler(Handler):
 			if course and mock:
 				question_keys = random.sample(question_keys, int(mock))
 			questions = db.get(question_keys)
-			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched)
+			self.render("QuestionsHome.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched, courses = courses)
 		else:
 
 			self.redirect(users.create_login_url(self.request.uri))
