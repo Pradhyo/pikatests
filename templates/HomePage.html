@@ -63,18 +63,27 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1>Pickatests</h1>
+                <h1>Pikatests</h1>
                 <hr>
-                <p>Would a sneak peak at your next test supercharge your score? Real course specific test questions. For students by students. </p>
+                <p>Would a sneak peak at your next test supercharge your score? <br>
+                Real course specific test questions.<br> 
+                FOR students, BY students. </p>
                 <div id="box">
                     <div id="container-1">
-                        <input type="search" id="search" placeholder="Search..." />
-                        <span class="icon"><a href="#about" class="btn btn-primary btn-xl page-scroll"><i class="fa fa-search"></i></a></span>
+                        <form>
+                        <input type="search" id="search" name="course" placeholder="Enter Course Number..." />
+                        <span class="icon">
+                            <button type="submit" class="btn btn-primary btn-xl page-scroll">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+    {% if searched %}
     <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">
@@ -83,48 +92,33 @@
                     <hr class="light">
                     <div class="bs-example">
                         <div class="panel-group" id="accordion">
+                            
+                                {% for q in questions %}
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. What is HTML?</a>
-                </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages. <a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn more.</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. What is Bootstrap?</a>
-                </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions. <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
-                                    </div>
+                                            
+                                                    {{ q.render_question() | safe }}
+                                
+                                
+
+                                    </h4>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. What is CSS?</a>
-                </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                    </div>
-                                </div>
-                            </div>
+                                            {% endfor %}
+
+                     
+
+
                         </div>
                     </div>
+            <h3 class="section-heading">Login for more questions!</h3>
+
                 </div>
             </div>
         </div>
     </section>
+                           {% endif %}
     <!-- jQuery -->
 
 </body>
