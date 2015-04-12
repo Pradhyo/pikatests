@@ -36,6 +36,10 @@ class User(db.Model):
 	department = db.StringProperty(required = True)
 	rating = db.IntegerProperty()
 
+class Course(db.Model):
+	course_id = db.StringProperty(required = True)
+	course_name = db.StringProperty()
+
 
 
 
