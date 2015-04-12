@@ -1,5 +1,5 @@
 import webapp2
-from handler import MainHandler, AddQuestion, QuestionsHandler
+from handler import MainHandler, AddQuestion, QuestionsHandler, MockHandler
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
@@ -7,4 +7,5 @@ app = webapp2.WSGIApplication([
 
 app = webapp2.WSGIApplication([('/', MainHandler),
 							   ('/questions', QuestionsHandler),
+							   ('/mock', MockHandler),
 							   ('/add_question', AddQuestion)], debug=True)
