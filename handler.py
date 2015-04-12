@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 import random
+import re
 from google.appengine.ext import db
 from google.appengine.api import users
 from data_models import Question, Answer
@@ -105,19 +106,21 @@ class AddQuestion(Handler):
 		# Checks for active Google account session
 		user = users.get_current_user()
 		if user:
-			courses = db.GqlQuery("SELECT DISTINCT course_id FROM Course WHERE course_id != ''")
-			self.render("add_question.html", name = user.nickname(), logout_url = logout_url, courses = courses)
+			self.render("add_question.html", name = user.nickname(), logout_url = logout_url)
 		else:
 			self.redirect(users.create_login_url(self.request.uri))
 
 	def post(self):
+		user = users.get_current_user()
 		question = self.request.get('question')
 		#school = self.request.get('school')
 		course = self.request.get('course')
-		if question and course:
+		if question and valid_course(course):
 			question = Question(parent = question_key(question_parent = course), question = question, course = course)
 			question.put()
 			self.redirect('/')			
+		else:
+			self.render("add_question.html", name = user.nickname(), logout_url = logout_url, error = "Invalid entry")
 
 class UserPage(Handler):
 	def get(self):
@@ -137,3 +140,6 @@ class EditUser(Handler):
 		else:
 			self.redirect("/")
 
+COURSE_RE = re.compile(r"^[A-Z]{2}-{1}[0-9]{4}$")
+def valid_course(course):
+	return course and COURSE_RE.match(course)
