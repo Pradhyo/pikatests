@@ -80,6 +80,8 @@ class MockHandler(Handler):
 		searched = False
 		if user:
 			mocktest = False
+			error = None
+			error2 = None
 			q = Question.all(keys_only = True).order('-created')
 			courses = db.GqlQuery("SELECT DISTINCT course FROM Question WHERE course != ''")
 			#school = self.request.get('school')
@@ -91,11 +93,20 @@ class MockHandler(Handler):
 				q.filter("course =", course)
 				searched = True
 			question_keys = q.fetch(200)
-			if course and mock:
-				mocktest = True
-				question_keys = random.sample(question_keys, int(mock))
-			questions = db.get(question_keys)
-			self.render("mock.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched, courses = courses, mocktest = mocktest)
+			if course and mock.isdigit() and int(mock) > 0:
+				if question_keys:
+					mocktest = True
+					if int(mock) < len(question_keys):
+						question_keys = random.sample(question_keys, int(mock))
+					else:
+						error = "Only so many questions so far!"
+					questions = db.get(question_keys)						
+					self.render("mock.html", name = user.nickname(), questions = questions, logout_url = logout_url, searched = searched, courses = courses, mocktest = mocktest, error = error)
+				else:
+					error2 = "No questions for this course yet!"				
+			else:
+				error2 = "Both must be valid choices"				
+			self.render("mock.html", name = user.nickname(), logout_url = logout_url, error2 = error2)
 		else:
 
 			self.redirect(users.create_login_url(self.request.uri))
