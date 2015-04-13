@@ -131,12 +131,17 @@ class AddQuestion(Handler):
 		question = self.request.get('question')
 		#school = self.request.get('school')
 		course = self.request.get('course')
-		if question and valid_course(course):
-			question = Question(parent = question_key(question_parent = course), question = question, course = course)
-			question.put()
-			self.redirect('/')			
+		error = None
+		if '@nyu.edu' in user.email():
+			if question and valid_course(course):
+				question = Question(parent = question_key(question_parent = course), question = question, course = course)
+				question.put()
+				self.redirect('/')
+			else:
+				error = "Invalid entry"			
 		else:
-			self.render("add_question.html", name = user.nickname(), logout_url = logout_url, error = "Invalid entry")
+			error = "Login with your nyu email to submit questions!"
+		self.render("add_question.html", name = user.nickname(), logout_url = logout_url, error = error)
 
 class UserPage(Handler):
 	def get(self):
